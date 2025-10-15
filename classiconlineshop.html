@@ -13,11 +13,6 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      cursor: default;
     }
     header {
       background: linear-gradient(90deg, #8b0000, #111);
@@ -66,7 +61,7 @@
       gap: 20px;
     }
     .app-card {
-      width: calc(50% - 10px);
+      width: calc(200% - 10px);
       background: #111;
       border: 2px solid #660000;
       border-radius: 10px;
@@ -82,12 +77,6 @@
       width: 100%;
       height: 250px;
       object-fit: cover;
-      -webkit-user-drag: none;
-      -khtml-user-drag: none;
-      -moz-user-drag: none;
-      -o-user-drag: none;
-      user-drag: none;
-      pointer-events: none;
     }
     .app-info {
       padding: 10px;
@@ -126,56 +115,35 @@
       font-size: 14px;
       border-top: 3px solid #b22222;
     }
-    
-    /* 保护提示样式 */
-    .protection-alert {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 71, 87, 0.95);
-      color: white;
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      z-index: 2147483647;
-      font-weight: bold;
-      font-size: 16px;
-      text-align: center;
-      border: 2px solid #fff;
-      backdrop-filter: blur(10px);
-      display: none;
-    }
-    
-    .protection-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 2147483646;
-      display: none;
-    }
-
     @media (max-width: 1024px) { .app-card { width: calc(50% - 20px); } }
     @media (max-width: 768px) { .app-card { width: 100%; } }
   </style>
+
 </head>
 <body>
+<script src="https://raw.githubusercontent.com/chunlong069-bot/Database/refs/heads/main/Untitled-1.js"></script>
 
 <header>🎸 Classic Online Shop 🔥</header>
 
+<!-- Google Drive 视频 -->
 <div class="video-container">
   <iframe
     src="https://www.youtube.com/embed/yvLfUD0KmTY?autoplay=1&mute=1&loop=1&playlist=yvLfUD0KmTY"
+    width="0%"
+    height="0"
     allow="autoplay; encrypted-media"
     allowfullscreen>
   </iframe>
 </div>
 
+
+
+<!-- 背景音乐（自动播放 + 循环） -->
+
+<!-- 背景音乐 -->
 <audio id="bgm" loop>
   <source src="https://github.com/chunlong069-bot/Database/raw/4dd5b9b24bf0514a1da9de5f9d5d447059bbe817/The%20Letter%20That%20Johnny%20Walker%20Read.mp3" type="audio/mpeg">
+  您的浏览器不支持 audio 标签。
 </audio>
 
 <button onclick="playMusic()" style="
@@ -189,6 +157,18 @@
   margin-top: 10px;
 ">🎸 Play / Pause Music</button>
 
+<script>
+function playMusic() {
+  const audio = document.getElementById('bgm');
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
+</script>
+
+
 <div class="container">
   <div class="category">
     <div class="category-title">🔥 Hot-selling products 🔥</div>
@@ -200,8 +180,7 @@
     <div class="app-list" id="gamesList"></div>
   </div>
 </div>
-
-<div style="background:#111; color:white; padding:20px; border-radius:10px; width:280px; margin:20px auto;">
+<div style="background:#111; color:white; padding:20px; border-radius:10px; width:280px;">
   <h3>📞 Contact Us</h3>
   <p><a href="tel:+60194387206" style="color:#00ff99;">Call: +60 19-438 7206</a></p>
   <p><a href="mailto:chunlong069@gmail.com" style="color:#00ccff;">Email: chunlong069@gmail.com</a></p>
@@ -211,185 +190,42 @@
 <footer>© 2025 Classic Online Shop. Website by CHOW SAW CHUN LONG. Partner: JAGADISSAN A/L LOGANATHAN. All rights reserved | Keep It Loud 🤘</footer>
 
 <script>
-// 桌面浏览器专用保护
-document.addEventListener('DOMContentLoaded', function() {
-    // 创建保护元素
-    const alert = document.createElement('div');
-    alert.className = 'protection-alert';
-    const overlay = document.createElement('div');
-    overlay.className = 'protection-overlay';
-    document.body.appendChild(alert);
-    document.body.appendChild(overlay);
-    
-    function showAlert(msg, duration = 2000) {
-        alert.textContent = msg;
-        alert.style.display = 'block';
-        overlay.style.display = 'block';
-        setTimeout(() => {
-            alert.style.display = 'none';
-            overlay.style.display = 'none';
-        }, duration);
-    }
-    
-    // 全面阻止右键
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        showAlert('🚫 右键菜单已被禁用');
-        return false;
-    }, true);
-    
-    // 阻止选择文本
-    document.addEventListener('selectstart', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showAlert('🚫 文本选择已被禁用');
-        return false;
-    }, true);
-    
-    // 阻止复制
-    document.addEventListener('copy', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showAlert('🚫 复制操作已被阻止');
-        return false;
-    }, true);
-    
-    // 阻止剪切
-    document.addEventListener('cut', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showAlert('🚫 剪切操作已被阻止');
-        return false;
-    }, true);
-    
-    // 全面键盘拦截
-    document.addEventListener('keydown', function(e) {
-        // Ctrl+C, Ctrl+X, Ctrl+U, Ctrl+S, Ctrl+P
-        if (e.ctrlKey && (
-            e.key === 'c' || e.key === 'C' || 
-            e.key === 'x' || e.key === 'X' ||
-            e.key === 'u' || e.key === 'U' ||
-            e.key === 's' || e.key === 'S' ||
-            e.key === 'p' || e.key === 'P'
-        )) {
-            e.preventDefault();
-            e.stopPropagation();
-            showAlert('🚫 快捷键已被禁用');
-            return false;
-        }
-        
-        // F12, Ctrl+Shift+I, Ctrl+Shift+J
-        if (e.key === 'F12' || 
-            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j'))
-        ) {
-            e.preventDefault();
-            e.stopPropagation();
-            showAlert('🚫 开发者工具已被禁用');
-            return false;
-        }
-        
-        // Print Screen
-        if (e.key === 'PrintScreen') {
-            e.preventDefault();
-            e.stopPropagation();
-            showAlert('🚫 截图已被禁用');
-            return false;
-        }
-    }, true);
-    
-    // 阻止拖拽
-    document.addEventListener('dragstart', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-    }, true);
-    
-    // 阻止开发者工具检测
-    let devToolsOpen = false;
-    setInterval(function() {
-        const widthThreshold = window.outerWidth - window.innerWidth > 160;
-        const heightThreshold = window.outerHeight - window.innerHeight > 160;
-        
-        if ((widthThreshold || heightThreshold) && !devToolsOpen) {
-            devToolsOpen = true;
-            showAlert('⚠️ 请关闭开发者工具', 3000);
-            document.body.style.opacity = '0.5';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 2000);
-        }
-    }, 1000);
-    
-    // 阻止控制台访问
-    Object.defineProperty(window, 'console', {
-        get: function() {
-            showAlert('🚫 控制台访问已被阻止');
-            return {
-                log: function() {},
-                warn: function() {},
-                error: function() {},
-                info: function() {}
-            };
-        }
-    });
-    
-    console.log('桌面保护系统已激活');
-});
-
-// 音乐控制
-function playMusic() {
-    const audio = document.getElementById('bgm');
-    if (audio.paused) {
-        audio.play().catch(e => console.log('自动播放被阻止，请手动点击播放'));
-    } else {
-        audio.pause();
-    }
-}
-
-// 产品数据
 const apps = [
-    {
-        category: "Hot-selling products",
-        title: "Almari Buku Pelbagai Fungsi",
-        description: "Tahan Lasak, Jimat Tenaga & Selamat, RM126.50 each",
-        icon: "https://github.com/chunlong069-bot/Database/blob/main/WhatsApp%20Image%202025-10-13%20at%208.57.03%20PM.jpeg?raw=true",
-        download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
-    },
-    {
-        category: "Customizations & Accessories",
-        title: "Custom Wire Length, SIRIM certified wires",
-        description: "Standard 2-meter cable included, For Custom RM2.00per Metre",
-        icon: "https://down-my.img.susercontent.com/file/my-11134207-7qul8-lj7zgj608dvq3b.webp",
-        download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
-    }
+  {
+    category: "Hot-selling products",
+    title: "Almari Buku Pelbagai Fungsi",
+    description: "Tahan Lasak, Jimat Tenaga & Selamat RM126.50 each",
+    icon: "https://github.com/chunlong069-bot/Database/blob/main/WhatsApp%20Image%202025-10-13%20at%208.57.03%20PM.jpeg?raw=true",
+    download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
+  },
+  {
+    category: "Customizations & Accessories",
+    title: "Custom Wire Length, SIRIM certified wires",
+    description: "Standard 2-meter cable included, For Custom Length RM2.00per metre",
+    icon: "https://down-my.img.susercontent.com/file/my-11134207-7qul8-lj7zgj608dvq3b.webp",
+    download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
+  }
 ];
 
-// 渲染产品
-function renderApps() {
-    const webDevList = document.getElementById("webDevList");
-    const gamesList = document.getElementById("gamesList");
-    
-    apps.forEach(app => {
-        const card = document.createElement("div");
-        card.className = "app-card";
-        card.innerHTML = `
-            <img src="${app.icon}" alt="${app.title}" oncontextmenu="return false" draggable="false">
-            <div class="app-info">
-                <h3 class="app-title">${app.title}</h3>
-                <p class="app-description">${app.description}</p>
-                <a class="download-btn" href="${app.download}">Order Now</a>
-            </div>`;
-        
-        if (app.category === "Hot-selling products") {
-            webDevList.appendChild(card);
-        } else {
-            gamesList.appendChild(card);
-        }
-    });
-}
 
+
+function renderApps() {
+  const webDevList = document.getElementById("webDevList");
+  const gamesList = document.getElementById("gamesList");
+  apps.forEach(app => {
+    const card = document.createElement("div");
+    card.className = "app-card";
+    card.innerHTML = `
+      <img src="${app.icon}" alt="${app.title}">
+      <div class="app-info">
+        <h3 class="app-title">${app.title}</h3>
+        <p class="app-description">${app.description}</p>
+        <a class="download-btn" href="${app.download}">Order Now</a>
+      </div>`;
+    if (app.category === "Hot-selling products") webDevList.appendChild(card);
+    else gamesList.appendChild(card);
+  });
+}
 renderApps();
 </script>
 
