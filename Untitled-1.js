@@ -1,4 +1,4 @@
-// HTML内容保护功能 - 纯JavaScript版本
+// HTML内容保护功能 - 修复版
 // 将此代码添加到您的HTML页面中即可启用内容保护
 
 // 创建保护提示样式
@@ -32,6 +32,17 @@ protectionStyle.textContent = `
         -ms-user-select: none;
         user-select: none;
     }
+    
+    /* 添加透明覆盖层确保右键被拦截 */
+    .protection-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: transparent;
+    }
 `;
 document.head.appendChild(protectionStyle);
 
@@ -40,6 +51,11 @@ const protectionAlert = document.createElement('div');
 protectionAlert.className = 'protection-alert';
 protectionAlert.id = 'protectionAlert';
 document.body.appendChild(protectionAlert);
+
+// 创建透明覆盖层
+const protectionOverlay = document.createElement('div');
+protectionOverlay.className = 'protection-overlay';
+document.body.appendChild(protectionOverlay);
 
 // 显示保护提示
 function showProtectionMessage(message = '此内容受保护') {
@@ -51,9 +67,18 @@ function showProtectionMessage(message = '此内容受保护') {
     }, 3000);
 }
 
-// 禁用右键菜单
+// 更严格的右键禁用
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
+    e.stopPropagation();
+    showProtectionMessage('右键菜单已禁用');
+    return false;
+});
+
+// 在覆盖层上也禁用右键
+protectionOverlay.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
     showProtectionMessage('右键菜单已禁用');
     return false;
 });
@@ -70,24 +95,28 @@ document.addEventListener('keydown', function(e) {
     // 拦截复制快捷键 (Ctrl+C)
     if (e.ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'Insert')) {
         showProtectionMessage('复制功能已禁用');
+        e.preventDefault();
         return false;
     }
     
     // 拦截F12开发者工具
     if (e.key === 'F12') {
         showProtectionMessage('开发者工具已禁用');
+        e.preventDefault();
         return false;
     }
     
     // 拦截Ctrl+U查看源代码
     if (e.ctrlKey && e.key === 'u') {
         showProtectionMessage('查看源代码已禁用');
+        e.preventDefault();
         return false;
     }
     
     // 拦截Ctrl+Shift+I开发者工具
     if (e.ctrlKey && e.shiftKey && e.key === 'I') {
         showProtectionMessage('开发者工具已禁用');
+        e.preventDefault();
         return false;
     }
 });
