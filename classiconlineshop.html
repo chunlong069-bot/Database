@@ -13,6 +13,11 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: default;
     }
     header {
       background: linear-gradient(90deg, #8b0000, #111);
@@ -77,6 +82,12 @@
       width: 100%;
       height: 250px;
       object-fit: cover;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
     }
     .app-info {
       padding: 10px;
@@ -116,7 +127,7 @@
       border-top: 3px solid #b22222;
     }
     
-    /* 保护样式 */
+    /* 保护提示样式 */
     .protection-alert {
       position: fixed;
       top: 50%;
@@ -142,11 +153,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.7);
       z-index: 2147483646;
       display: none;
     }
-    
+
     @media (max-width: 1024px) { .app-card { width: calc(50% - 20px); } }
     @media (max-width: 768px) { .app-card { width: 100%; } }
   </style>
@@ -155,21 +166,16 @@
 
 <header>🎸 Classic Online Shop 🔥</header>
 
-<!-- Google Drive 视频 -->
 <div class="video-container">
   <iframe
     src="https://www.youtube.com/embed/yvLfUD0KmTY?autoplay=1&mute=1&loop=1&playlist=yvLfUD0KmTY"
-    width="0%"
-    height="0"
     allow="autoplay; encrypted-media"
     allowfullscreen>
   </iframe>
 </div>
 
-<!-- 背景音乐 -->
 <audio id="bgm" loop>
   <source src="https://github.com/chunlong069-bot/Database/raw/4dd5b9b24bf0514a1da9de5f9d5d447059bbe817/The%20Letter%20That%20Johnny%20Walker%20Read.mp3" type="audio/mpeg">
-  您的浏览器不支持 audio 标签。
 </audio>
 
 <button onclick="playMusic()" style="
@@ -205,91 +211,138 @@
 <footer>© 2025 Classic Online Shop. Website by CHOW SAW CHUN LONG. Partner: JAGADISSAN A/L LOGANATHAN. All rights reserved | Keep It Loud 🤘</footer>
 
 <script>
-// 内容保护系统
-(function() {
-    'use strict';
-    
+// 桌面浏览器专用保护
+document.addEventListener('DOMContentLoaded', function() {
     // 创建保护元素
-    const protectionAlert = document.createElement('div');
-    protectionAlert.className = 'protection-alert';
-    protectionAlert.id = 'protectionAlert';
+    const alert = document.createElement('div');
+    alert.className = 'protection-alert';
+    const overlay = document.createElement('div');
+    overlay.className = 'protection-overlay';
+    document.body.appendChild(alert);
+    document.body.appendChild(overlay);
     
-    const protectionOverlay = document.createElement('div');
-    protectionOverlay.className = 'protection-overlay';
-    protectionOverlay.id = 'protectionOverlay';
-    
-    document.body.appendChild(protectionAlert);
-    document.body.appendChild(protectionOverlay);
-    
-    // 禁用文本选择
-    document.body.style.userSelect = 'none';
-    document.body.style.webkitUserSelect = 'none';
-    document.body.style.mozUserSelect = 'none';
-    document.body.style.msUserSelect = 'none';
-    
-    // 显示保护警告
-    function showProtectionMessage(message) {
-        protectionAlert.textContent = message;
-        protectionAlert.style.display = 'block';
-        protectionOverlay.style.display = 'block';
-        
+    function showAlert(msg, duration = 2000) {
+        alert.textContent = msg;
+        alert.style.display = 'block';
+        overlay.style.display = 'block';
         setTimeout(() => {
-            protectionAlert.style.display = 'none';
-            protectionOverlay.style.display = 'none';
-        }, 2000);
+            alert.style.display = 'none';
+            overlay.style.display = 'none';
+        }, duration);
     }
     
-    // 禁用右键菜单
+    // 全面阻止右键
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
-        showProtectionMessage('🚫 右键菜单已禁用');
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        showAlert('🚫 右键菜单已被禁用');
         return false;
-    });
+    }, true);
     
-    // 禁用文本选择
+    // 阻止选择文本
     document.addEventListener('selectstart', function(e) {
         e.preventDefault();
-        showProtectionMessage('🚫 文本选择已禁用');
+        e.stopPropagation();
+        showAlert('🚫 文本选择已被禁用');
         return false;
-    });
+    }, true);
     
-    // 禁用复制快捷键
+    // 阻止复制
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        showAlert('🚫 复制操作已被阻止');
+        return false;
+    }, true);
+    
+    // 阻止剪切
+    document.addEventListener('cut', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        showAlert('🚫 剪切操作已被阻止');
+        return false;
+    }, true);
+    
+    // 全面键盘拦截
     document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) {
+        // Ctrl+C, Ctrl+X, Ctrl+U, Ctrl+S, Ctrl+P
+        if (e.ctrlKey && (
+            e.key === 'c' || e.key === 'C' || 
+            e.key === 'x' || e.key === 'X' ||
+            e.key === 'u' || e.key === 'U' ||
+            e.key === 's' || e.key === 'S' ||
+            e.key === 'p' || e.key === 'P'
+        )) {
             e.preventDefault();
-            showProtectionMessage('🚫 复制功能已禁用');
+            e.stopPropagation();
+            showAlert('🚫 快捷键已被禁用');
             return false;
         }
         
-        // 禁用F12
-        if (e.key === 'F12') {
+        // F12, Ctrl+Shift+I, Ctrl+Shift+J
+        if (e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j'))
+        ) {
             e.preventDefault();
-            showProtectionMessage('🚫 开发者工具已禁用');
+            e.stopPropagation();
+            showAlert('🚫 开发者工具已被禁用');
             return false;
         }
         
-        // 禁用Ctrl+U
-        if (e.ctrlKey && e.key === 'u') {
+        // Print Screen
+        if (e.key === 'PrintScreen') {
             e.preventDefault();
-            showProtectionMessage('🚫 查看源代码已禁用');
+            e.stopPropagation();
+            showAlert('🚫 截图已被禁用');
             return false;
         }
-    });
+    }, true);
     
-    // 防止拖拽
+    // 阻止拖拽
     document.addEventListener('dragstart', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         return false;
+    }, true);
+    
+    // 阻止开发者工具检测
+    let devToolsOpen = false;
+    setInterval(function() {
+        const widthThreshold = window.outerWidth - window.innerWidth > 160;
+        const heightThreshold = window.outerHeight - window.innerHeight > 160;
+        
+        if ((widthThreshold || heightThreshold) && !devToolsOpen) {
+            devToolsOpen = true;
+            showAlert('⚠️ 请关闭开发者工具', 3000);
+            document.body.style.opacity = '0.5';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 2000);
+        }
+    }, 1000);
+    
+    // 阻止控制台访问
+    Object.defineProperty(window, 'console', {
+        get: function() {
+            showAlert('🚫 控制台访问已被阻止');
+            return {
+                log: function() {},
+                warn: function() {},
+                error: function() {},
+                info: function() {}
+            };
+        }
     });
     
-    console.log('🔒 内容保护已启用');
-})();
+    console.log('桌面保护系统已激活');
+});
 
 // 音乐控制
 function playMusic() {
     const audio = document.getElementById('bgm');
     if (audio.paused) {
-        audio.play();
+        audio.play().catch(e => console.log('自动播放被阻止，请手动点击播放'));
     } else {
         audio.pause();
     }
@@ -322,7 +375,7 @@ function renderApps() {
         const card = document.createElement("div");
         card.className = "app-card";
         card.innerHTML = `
-            <img src="${app.icon}" alt="${app.title}">
+            <img src="${app.icon}" alt="${app.title}" oncontextmenu="return false" draggable="false">
             <div class="app-info">
                 <h3 class="app-title">${app.title}</h3>
                 <p class="app-description">${app.description}</p>
@@ -337,7 +390,6 @@ function renderApps() {
     });
 }
 
-// 初始化
 renderApps();
 </script>
 
