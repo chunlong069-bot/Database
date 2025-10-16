@@ -369,11 +369,11 @@ function renderApps() {
         <a class="download-btn" href="${app.download}">Order Now</a>
       </div>`;
     if (app.category === "Hot-selling products") webDevList.appendChild(card);
-    else gamesList.appendChild(card);
+    else webDevList.appendChild(card);
     if (app.category === "Customizations & Accessories") gameList.appendChild(card);
     else gamesList.appendChild(card);
      if (app.category === "Other merchants") merchantsList.appendChild(card);
-    else gamesList.appendChild(card);
+    else merchantsList.appendChild(card);
   });
 }
 renderApps();
