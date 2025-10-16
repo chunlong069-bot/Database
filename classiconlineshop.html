@@ -369,6 +369,8 @@ function renderApps() {
       </div>`;
     if (app.category === "Hot-selling products") webDevList.appendChild(card);
     else gamesList.appendChild(card);
+    if (app.category === "Customizations & Accessories") gameList.appendChild(card);
+    else gamesList.appendChild(card);
   });
 }
 renderApps();
