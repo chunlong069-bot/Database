@@ -317,6 +317,7 @@ function playMusic() {
     <div class="category-title">🛒 Other merchants 🛒</div>
     <div class="app-list" id="merchantsList"></div>
 </div>
+  
 <div style="background:#111; color:white; padding:20px; border-radius:10px; width:280px;">
   <h3>📞 Contact Us</h3>
   <p><a href="tel:+60194387206" style="color:#00ff99;">Call: +60 19-438 7206</a></p>
@@ -343,7 +344,7 @@ const apps = [
     download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
   },
   {
-    category: "Other merchants🛒",
+    category: "Other merchants",
     title: "Almari Buku Pelbagai Fungsi",
     description: "Termasuk dawai 2m, Tahan Lasak, Jimat Tenaga & Selamat RM126.50 each",
     icon: "https://github.com/chunlong069-bot/Database/blob/main/WhatsApp%20Image%202025-10-13%20at%208.57.03%20PM.jpeg?raw=true",
@@ -370,6 +371,8 @@ function renderApps() {
     if (app.category === "Hot-selling products") webDevList.appendChild(card);
     else gamesList.appendChild(card);
     if (app.category === "Customizations & Accessories") gameList.appendChild(card);
+    else gamesList.appendChild(card);
+     if (app.category === "Other merchants") merchantsList.appendChild(card);
     else gamesList.appendChild(card);
   });
 }
