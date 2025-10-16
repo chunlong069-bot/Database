@@ -28,7 +28,7 @@
     .video-container {
       width: 100%;
       height: 0;
-      padding-bottom: 50%;
+      padding-bottom: 56.25%; /* 16:9 比例 */
       position: relative;
       background: #000;
       border-bottom: 3px solid #b22222;
@@ -61,7 +61,7 @@
       gap: 20px;
     }
     .app-card {
-      width: calc(200% - 10px);
+      width: calc(33.33% - 20px);
       background: #111;
       border: 2px solid #660000;
       border-radius: 10px;
@@ -117,169 +117,72 @@
     }
     @media (max-width: 1024px) { .app-card { width: calc(50% - 20px); } }
     @media (max-width: 768px) { .app-card { width: 100%; } }
-  </style>
 
+    /* 防复制与右键保护样式 */
+    .protection-alert {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 71, 87, 0.95);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 2147483647;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+      border: 2px solid #fff;
+      backdrop-filter: blur(10px);
+      display: none;
+    }
+    .protection-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 2147483646;
+      display: none;
+    }
+    .protection-blocked {
+      filter: blur(10px) grayscale(100%);
+      pointer-events: none;
+    }
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: default;
+    }
+  </style>
 </head>
 <body>
 
-  <script>// 真正的代码混淆和保护
-(function() {
-    'use strict';
-    
-    // 创建保护样式
-    const protectionStyle = document.createElement('style');
-    protectionStyle.textContent = `
-        .protection-alert {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 71, 87, 0.95);
-            color: white;
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            z-index: 2147483647;
-            font-weight: bold;
-            font-size: 16px;
-            text-align: center;
-            border: 2px solid #fff;
-            backdrop-filter: blur(10px);
-            display: none;
-        }
-        
-        .protection-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2147483646;
-            display: none;
-        }
-        
-        .protection-blocked {
-            filter: blur(10px) grayscale(100%);
-            pointer-events: none;
-        }
-        
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            cursor: default;
-        }
-    `;
-    document.head.appendChild(protectionStyle);
-    
-    // 创建保护元素
-    const protectionAlert = document.createElement('div');
-    protectionAlert.className = 'protection-alert';
-    const protectionOverlay = document.createElement('div');
-    protectionOverlay.className = 'protection-overlay';
-    document.body.appendChild(protectionAlert);
-    document.body.appendChild(protectionOverlay);
-    
-    let violationCount = 0;
-    
-    function showAlert(msg, duration = 3000) {
-        protectionAlert.textContent = msg;
-        protectionAlert.style.display = 'block';
-        protectionOverlay.style.display = 'block';
-        setTimeout(() => {
-            protectionAlert.style.display = 'none';
-            protectionOverlay.style.display = 'none';
-        }, duration);
-    }
-    
-    function enableStrictMode() {
-        violationCount++;
-        if (violationCount >= 2) {
-            document.body.classList.add('protection-blocked');
-            showAlert('🚫 安全违规，页面内容已屏蔽', 10000);
-            // 清除页面内容
-            setTimeout(() => {
-                document.body.innerHTML = '<div style="text-align:center;padding:50px;color:red;font-size:24px;">🚫 内容因安全原因已被屏蔽</div>';
-            }, 3000);
-        }
-    }
-    
-    // 阻止所有查看源代码的方式
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'F12' || 
-            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) ||
-            (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) ||
-            (e.ctrlKey && e.key === 'u') ||
-            (e.ctrlKey && e.key === 's')) {
-            e.preventDefault();
-            e.stopPropagation();
-            showAlert('🚫 安全操作已被阻止');
-            enableStrictMode();
-            return false;
-        }
-    }, true);
-    
-    // 基础保护
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        showAlert('🚫 右键菜单已被禁用');
-        return false;
-    }, true);
-    
-    document.addEventListener('selectstart', function(e) {
-        e.preventDefault();
-        showAlert('🚫 文本选择已被禁用');
-        return false;
-    }, true);
-    
-    document.addEventListener('copy', function(e) {
-        e.preventDefault();
-        showAlert('🚫 复制操作已被阻止');
-        return false;
-    }, true);
-    
-    // 防止iframe嵌入
-    if (window.self !== window.top) {
-        window.top.location = window.self.location;
-    }
-    
-    // 页面卸载保护
-    window.addEventListener('beforeunload', function(e) {
-        if (violationCount > 0) {
-            document.body.innerHTML = '';
-        }
-    });
-    
-    console.log('安全保护系统已激活');
-})();
-  </script>
-
 <header>Classic Online Shop</header>
 
-<!-- Google Drive 视频 -->
+<!-- YouTube 视频 -->
 <div class="video-container">
   <iframe
     src="https://www.youtube.com/embed/yvLfUD0KmTY?autoplay=1&mute=1&loop=1&playlist=yvLfUD0KmTY"
-    width="0%"
-    height="0"
     allow="autoplay; encrypted-media"
     allowfullscreen>
   </iframe>
 </div>
 
-
-
-<!-- 背景音乐（自动播放 + 循环） -->
-
-<!-- 背景音乐 -->
+<!-- 背景音乐按钮（固定右下角） -->
 <audio id="bgm" loop>
   <source src="https://github.com/chunlong069-bot/Database/raw/4dd5b9b24bf0514a1da9de5f9d5d447059bbe817/The%20Letter%20That%20Johnny%20Walker%20Read.mp3" type="audio/mpeg">
   您的浏览器不支持 audio 标签。
 </audio>
 
 <button onclick="playMusic()" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   background: linear-gradient(90deg, #ff0000, #ff9900);
   color: white;
   border: none;
@@ -287,7 +190,7 @@
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
+  z-index: 9999;
 ">🎸 Play / Pause Music</button>
 
 <script>
@@ -300,7 +203,6 @@ function playMusic() {
   }
 }
 </script>
-
 
 <div class="container">
   <div class="category">
@@ -316,13 +218,14 @@ function playMusic() {
   <div class="category">
     <div class="category-title">🛒 Other merchants 🛒</div>
     <div class="app-list" id="merchantsList"></div>
-</div>
-  
-<div style="background:#111; color:white; padding:20px; border-radius:10px; width:280px;">
-  <h3>📞 Contact Us</h3>
-  <p><a href="tel:+60194387206" style="color:#00ff99;">Call: +60 19-438 7206</a></p>
-  <p><a href="mailto:chunlong069@gmail.com" style="color:#00ccff;">Email: chunlong069@gmail.com</a></p>
-  <p><a href="https://wa.me/60194387206" target="_blank" style="color:#25D366;">WhatsApp Us</a></p>
+  </div>
+
+  <div style="background:#111; color:white; padding:20px; border-radius:10px; width:280px; margin-top:30px;">
+    <h3>📞 Contact Us</h3>
+    <p><a href="tel:+60194387206" style="color:#00ff99;">Call: +60 19-438 7206</a></p>
+    <p><a href="mailto:chunlong069@gmail.com" style="color:#00ccff;">Email: chunlong069@gmail.com</a></p>
+    <p><a href="https://wa.me/60194387206" target="_blank" style="color:#25D366;">WhatsApp Us</a></p>
+  </div>
 </div>
 
 <footer>© 2025 Classic Online Shop. Website by CHOW SAW CHUN LONG. Partner: JAGADISSAN A/L LOGANATHAN. All rights reserved | Keep It Loud 🤘</footer>
@@ -339,7 +242,7 @@ const apps = [
   {
     category: "Customizations & Accessories",
     title: "Custom Wire Length, SIRIM certified wires",
-    description: "For Custom Length RM2.00per Metre",
+    description: "For Custom Length RM2.00 per Metre",
     icon: "https://down-my.img.susercontent.com/file/my-11134207-7qul8-lj7zgj608dvq3b.webp",
     download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
   },
@@ -352,12 +255,11 @@ const apps = [
   }
 ];
 
-
-
 function renderApps() {
   const webDevList = document.getElementById("webDevList");
   const gamesList = document.getElementById("gamesList");
   const merchantsList = document.getElementById("merchantsList");
+
   apps.forEach(app => {
     const card = document.createElement("div");
     card.className = "app-card";
@@ -367,16 +269,72 @@ function renderApps() {
         <h3 class="app-title">${app.title}</h3>
         <p class="app-description">${app.description}</p>
         <a class="download-btn" href="${app.download}">Order Now</a>
-      </div>`;
-    if (app.category === "Hot-selling products") webDevList.appendChild(card);
-    else gamesList.appendChild(card);
-    if (app.category === "Customizations & Accessories") gameList.appendChild(card);
-    else gamesList.appendChild(card);
-     if (app.category === "Other merchants") merchantsList.appendChild(card);
-    else gamesList.appendChild(card);
+      </div>
+    `;
+    if (app.category === "Hot-selling products") {
+      webDevList.appendChild(card);
+    } else if (app.category === "Customizations & Accessories") {
+      gamesList.appendChild(card);
+    } else if (app.category === "Other merchants") {
+      merchantsList.appendChild(card);
+    }
   });
 }
 renderApps();
+</script>
+
+<!-- 防止查看源码、右键、复制等 -->
+<script>
+(function() {
+  'use strict';
+  const alertBox = document.createElement('div');
+  alertBox.className = 'protection-alert';
+  alertBox.textContent = '🚫 安全操作已被阻止';
+  document.body.appendChild(alertBox);
+  const overlay = document.createElement('div');
+  overlay.className = 'protection-overlay';
+  document.body.appendChild(overlay);
+
+  function showAlert(msg) {
+    alertBox.textContent = msg;
+    alertBox.style.display = 'block';
+    overlay.style.display = 'block';
+    setTimeout(() => {
+      alertBox.style.display = 'none';
+      overlay.style.display = 'none';
+    }, 2500);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && ['I', 'i', 'J', 'j'].includes(e.key)) ||
+      (e.ctrlKey && ['u', 's', 'U', 'S'].includes(e.key))
+    ) {
+      e.preventDefault();
+      showAlert('🚫 开发者工具被阻止');
+    }
+  });
+
+  document.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    showAlert('🚫 禁止右键');
+  });
+
+  document.addEventListener('selectstart', e => {
+    e.preventDefault();
+    showAlert('🚫 禁止选取');
+  });
+
+  document.addEventListener('copy', e => {
+    e.preventDefault();
+    showAlert('🚫 禁止复制');
+  });
+
+  if (window.self !== window.top) {
+    window.top.location = window.self.location;
+  }
+})();
 </script>
 
 </body>
