@@ -312,6 +312,10 @@ function playMusic() {
     <div class="category-title">⚡ Customizations & Accessories ⚡</div>
     <div class="app-list" id="gamesList"></div>
   </div>
+
+  <div class="category>
+    <div class="category-title">🛒 Other merchants 🛒</div>
+    <div class="app-list" id="merchantsList"></div>
 </div>
 <div style="background:#111; color:white; padding:20px; border-radius:10px; width:280px;">
   <h3>📞 Contact Us</h3>
@@ -337,7 +341,13 @@ const apps = [
     description: "For Custom Length RM2.00per Metre",
     icon: "https://down-my.img.susercontent.com/file/my-11134207-7qul8-lj7zgj608dvq3b.webp",
     download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
-  }
+  },
+  {
+    category: "Other merchants🛒",
+    title: "Almari Buku Pelbagai Fungsi",
+    description: "Termasuk dawai 2m, Tahan Lasak, Jimat Tenaga & Selamat RM126.50 each",
+    icon: "https://github.com/chunlong069-bot/Database/blob/main/WhatsApp%20Image%202025-10-13%20at%208.57.03%20PM.jpeg?raw=true",
+    download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
 ];
 
 
@@ -345,6 +355,7 @@ const apps = [
 function renderApps() {
   const webDevList = document.getElementById("webDevList");
   const gamesList = document.getElementById("gamesList");
+  const merchantsList = document.getElementById("merchantsList");
   apps.forEach(app => {
     const card = document.createElement("div");
     card.className = "app-card";
