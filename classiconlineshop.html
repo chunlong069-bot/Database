@@ -180,18 +180,18 @@
 </audio>
 
 <button onclick="playMusic()" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: linear-gradient(90deg, #ff0000, #ff9900);
+  background: rgba(255,255,255,0.1);
   color: white;
-  border: none;
+  border: 2px solid rgba(255,255,255,0.6);
   padding: 10px 20px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  z-index: 9999;
-">▶️⏸️Music</button>
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+">
+🎸 Play / Pause Music
+</button>
 
 <script>
 function playMusic() {
