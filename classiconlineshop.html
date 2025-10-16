@@ -1,257 +1,220 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classic Online Shop (Client)</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: radial-gradient(circle at top, #1a1a1a, #000);
-      color: #f5f5f5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      background: linear-gradient(90deg, #8b0000, #111);
-      color: #ffd700;
-      padding: 20px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 4px black;
-      border-bottom: 3px solid #b22222;
-    }
-    .video-container {
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%; /* 16:9 比例 */
-      position: relative;
-      background: #000;
-      border-bottom: 3px solid #b22222;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .container {
-      flex: 1;
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-    }
-    .category-title {
-      font-size: 22px;
-      color: #ffcc00;
-      border-left: 5px solid #ff0000;
-      padding-left: 10px;
-      margin-bottom: 15px;
-      text-shadow: 1px 1px 4px black;
-    }
-    .app-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .app-card {
-      width: calc(33.33% - 20px);
-      background: #111;
-      border: 2px solid #660000;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255,0,0,0.3);
-      overflow: hidden;
-      transition: 0.3s;
-    }
-    .app-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255,215,0,0.5);
-    }
-    .app-card img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-    .app-info {
-      padding: 10px;
-    }
-    .app-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #ff4444;
-      text-shadow: 1px 1px 2px black;
-    }
-    .app-description {
-      font-size: 14px;
-      color: #ccc;
-      margin-top: 5px;
-    }
-    .download-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 12px;
-      background: linear-gradient(90deg, #ff0000, #ff8c00);
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-    .download-btn:hover {
-      background: linear-gradient(90deg, #ffcc00, #ff0000);
-      color: black;
-    }
-    footer {
-      text-align: center;
-      padding: 10px;
-      background: #111;
-      color: #999;
-      font-size: 14px;
-      border-top: 3px solid #b22222;
-    }
-    @media (max-width: 1024px) { .app-card { width: calc(50% - 20px); } }
-    @media (max-width: 768px) { .app-card { width: 100%; } }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Classic Online Shop</title>
 
-    /* 防复制与右键保护样式 */
-    .protection-alert {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 71, 87, 0.95);
-      color: white;
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      z-index: 2147483647;
-      font-weight: bold;
-      font-size: 16px;
-      text-align: center;
-      border: 2px solid #fff;
-      backdrop-filter: blur(10px);
-      display: none;
-    }
-    .protection-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 2147483646;
-      display: none;
-    }
-    .protection-blocked {
-      filter: blur(10px) grayscale(100%);
-      pointer-events: none;
-    }
-    body {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      cursor: default;
-    }
-  </style>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: linear-gradient(135deg, #0d1117, #1b2735);
+    color: #e4e6eb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* === 渐变发光标题 === */
+  header {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0 20px;
+    background: transparent;
+  }
+  header h1 {
+    font-size: 40px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00c6ff, #007bff, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 3s infinite linear;
+    text-shadow: 0 0 20px rgba(0,198,255,0.6);
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 10px #007bff; }
+    50% { text-shadow: 0 0 25px #00c6ff; }
+    100% { text-shadow: 0 0 10px #007bff; }
+  }
+
+  /* === 分类标题 === */
+  section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    text-align: center;
+  }
+
+  section h2 {
+    color: #5bc0de;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(91,192,222,0.4);
+  }
+
+  /* === 产品卡片 === */
+  .apps-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .app-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 15px;
+    width: calc(33.33% - 20px);
+    min-width: 260px;
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .app-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(91,192,222,0.4);
+  }
+
+  .app-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .app-card h3 {
+    color: #00bfff;
+    margin: 12px 0 5px;
+  }
+
+  .app-card p {
+    color: #b0b3b8;
+    font-size: 14px;
+    min-height: 40px;
+  }
+
+  .app-card .button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 8px;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+  }
+
+  .app-card .button:hover {
+    opacity: 0.85;
+    box-shadow: 0 0 10px rgba(0,198,255,0.5);
+  }
+
+  /* === 透明玻璃风音乐按钮 === */
+  button[onclick="playMusic()"] {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.08);
+    color: #e4e6eb;
+    border: 2px solid rgba(91,192,222,0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+  }
+
+  button[onclick="playMusic()"]:hover {
+    border-color: #00c6ff;
+    background: rgba(0,198,255,0.15);
+    color: white;
+    box-shadow: 0 0 10px rgba(0,198,255,0.5);
+  }
+
+  /* === 页脚 === */
+  footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    color: #7a7a7a;
+    background: rgba(255,255,255,0.03);
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  @media (max-width: 900px) {
+    .app-card { width: calc(50% - 20px); }
+  }
+  @media (max-width: 600px) {
+    .app-card { width: 100%; }
+  }
+</style>
 </head>
+
 <body>
 
-<header>Classic Online Shop</header>
+<header>
+  <h1>Classic Online Shop</h1>
+</header>
 
-<!-- YouTube 视频 -->
-<div class="video-container">
-  <iframe
-    src="https://www.youtube.com/embed/yvLfUD0KmTY?autoplay=1&mute=1&loop=1&playlist=yvLfUD0KmTY"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
-</div>
+<section id="webDev">
+  <h2>🔥 Hot-selling products 🔥</h2>
+  <div class="apps-container" id="webDevList"></div>
+</section>
 
-<!-- 背景音乐按钮（固定右下角） -->
-<audio id="bgm" loop>
+<section id="games">
+  <h2>⚙️ Customizations & Accessories ⚙️</h2>
+  <div class="apps-container" id="gamesList"></div>
+</section>
+
+<section id="merchants">
+  <h2>🏪 Other merchants 🏪</h2>
+  <div class="apps-container" id="merchantsList"></div>
+</section>
+
+<!-- 🎸 背景音乐 -->
+<audio id="bgMusic" loop>
   <source src="https://github.com/chunlong069-bot/Database/raw/4dd5b9b24bf0514a1da9de5f9d5d447059bbe817/The%20Letter%20That%20Johnny%20Walker%20Read.mp3" type="audio/mpeg">
-  您的浏览器不支持 audio 标签。
 </audio>
 
-<button onclick="playMusic()" style="
-  background: rgba(255,255,255,0.1);
-  color: white;
-  border: 2px solid rgba(255,255,255,0.6);
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  backdrop-filter: blur(6px);
-  transition: all 0.3s ease;
-">
-🎸 Play / Pause Music
-</button>
+<!-- 🎵 透明玻璃按钮 -->
+<button onclick="playMusic()">🎸 Play / Pause Music</button>
 
-<script>
-function playMusic() {
-  const audio = document.getElementById('bgm');
-  if (audio.paused) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
-}
-</script>
-
-<div class="container">
-  <div class="category">
-    <div class="category-title">🔥 Hot-selling products 🔥</div>
-    <div class="app-list" id="webDevList"></div>
-  </div>
-
-  <div class="category">
-    <div class="category-title">⚡ Customizations & Accessories ⚡</div>
-    <div class="app-list" id="gamesList"></div>
-  </div>
-
-  <div class="category">
-    <div class="category-title">🛒 Products from other merchants 🛒</div>
-    <div class="app-list" id="merchantsList"></div>
-  </div>
-
-  <div style="background:#111; color:white; padding:20px; border-radius:10px; width:280px; margin-top:30px;">
-    <h3>📞 Contact Us</h3>
-    <p><a href="tel:+60194387206" style="color:#00ff99;">Call: +60 19-438 7206</a></p>
-    <p><a href="mailto:chunlong069@gmail.com" style="color:#00ccff;">Email: chunlong069@gmail.com</a></p>
-    <p><a href="https://wa.me/60194387206" target="_blank" style="color:#25D366;">WhatsApp Us</a></p>
-  </div>
-</div>
-
-<footer>Copyright © 2025 Classic Online Shop. All rights reserved | Keep It Loud 🤘</footer>
+<footer>© 2025 Classic Online Shop — Keep It Loud 🤘</footer>
 
 <script>
 const apps = [
   {
-    category: "Hot-selling products",
-    title: "Almari Buku Pelbagai Fungsi",
+    name: "Almari Buku Pelbagai Fungsi",
     description: "Termasuk dawai 2m, Tahan Lasak, Jimat Tenaga & Selamat RM126.50 each",
-    icon: "https://github.com/chunlong069-bot/Database/blob/main/WhatsApp%20Image%202025-10-13%20at%208.57.03%20PM.jpeg?raw=true",
-    download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
+    image: "https://github.com/chunlong069-bot/Database/blob/main/WhatsApp%20Image%202025-10-13%20at%208.57.03%20PM.jpeg?raw=true",
+    link: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:",
+    category: "Hot-selling products"
   },
   {
-    category: "Customizations & Accessories",
-    title: "Custom Wire Length, SIRIM certified wires",
-    description: "For Custom Length RM2.00 per Metre",
-    icon: "https://down-my.img.susercontent.com/file/my-11134207-7qul8-lj7zgj608dvq3b.webp",
-    download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
+    name: "Custom Wire Length (SIRIM Certified)",
+    description: "Custom wire length available — RM2.00 per metre.",
+    image: "https://down-my.img.susercontent.com/file/my-11134207-7qul8-lj7zgj608dvq3b.webp",
+    link: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:",
+    category: "Customizations & Accessories"
   },
   {
-    category: "Other merchants",
-    title: "Kotak Tisu Manik 'Berseri Indah'",
+    name: "Kotak Tisu Manik 'Berseri Indah'",
     description: "Product by Hamsavahini & Durgaashini RM60.00 each",
-    icon: "https://github.com/chunlong069-bot/Database/blob/main/Kotak%20Tisu%20Manik%20'Berseri%20Indah'.jpeg?raw=true",
-    download: "#"
+    image: "https://github.com/chunlong069-bot/Database/blob/main/Kotak%20Tisu%20Manik%20'Berseri%20Indah'.jpeg?raw=true",
+    link: "#",
+    category: "Other merchants"
   }
 ];
 
@@ -262,14 +225,12 @@ function renderApps() {
 
   apps.forEach(app => {
     const card = document.createElement("div");
-    card.className = "app-card";
+    card.classList.add("app-card");
     card.innerHTML = `
-      <img src="${app.icon}" alt="${app.title}">
-      <div class="app-info">
-        <h3 class="app-title">${app.title}</h3>
-        <p class="app-description">${app.description}</p>
-        <a class="download-btn" href="${app.download}">Order Now</a>
-      </div>
+      <img src="${app.image}" alt="${app.name}">
+      <h3>${app.name}</h3>
+      <p>${app.description}</p>
+      <a href="${app.link}" class="button">Order Now</a>
     `;
     if (app.category === "Hot-selling products") {
       webDevList.appendChild(card);
@@ -280,61 +241,17 @@ function renderApps() {
     }
   });
 }
+
 renderApps();
-</script>
 
-<!-- 防止查看源码、右键、复制等 -->
-<script>
-(function() {
-  'use strict';
-  const alertBox = document.createElement('div');
-  alertBox.className = 'protection-alert';
-  alertBox.textContent = '🚫 安全操作已被阻止';
-  document.body.appendChild(alertBox);
-  const overlay = document.createElement('div');
-  overlay.className = 'protection-overlay';
-  document.body.appendChild(overlay);
-
-  function showAlert(msg) {
-    alertBox.textContent = msg;
-    alertBox.style.display = 'block';
-    overlay.style.display = 'block';
-    setTimeout(() => {
-      alertBox.style.display = 'none';
-      overlay.style.display = 'none';
-    }, 2500);
+function playMusic() {
+  const audio = document.getElementById('bgMusic');
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
   }
-
-  document.addEventListener('keydown', e => {
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && ['I', 'i', 'J', 'j'].includes(e.key)) ||
-      (e.ctrlKey && ['u', 's', 'U', 'S'].includes(e.key))
-    ) {
-      e.preventDefault();
-      showAlert('🚫 开发者工具被阻止');
-    }
-  });
-
-  document.addEventListener('contextmenu', e => {
-    e.preventDefault();
-    showAlert('🚫 禁止右键');
-  });
-
-  document.addEventListener('selectstart', e => {
-    e.preventDefault();
-    showAlert('🚫 禁止选取');
-  });
-
-  document.addEventListener('copy', e => {
-    e.preventDefault();
-    showAlert('🚫 禁止复制');
-  });
-
-  if (window.self !== window.top) {
-    window.top.location = window.self.location;
-  }
-})();
+}
 </script>
 
 </body>
