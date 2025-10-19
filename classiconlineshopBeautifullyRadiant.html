@@ -362,14 +362,26 @@
             </div>
           `;
         } else {
-          card.innerHTML = `
-            <img src="${app.icon}" alt="${app.title}">
-            <div class="app-info">
-              <h3 class="app-title">${app.title}</h3>
-              <p class="app-description">${app.description}</p>
-              <a class="download-btn" href="${app.download}">Order Now</a>
-            </div>
-          `;
+           // 如果想改“Almari Buku Pelbagai Fungsi”那一项为 Details
+const detailItems = [
+  "ENERGIZER Max Alkaline Battery",
+  "Premier Tissue 2 Ply",
+  "Almari Buku Pelbagai Fungsi"
+];
+
+// ✅ 保留原来的语句结构，但实现多个按钮文字
+const buttonText = detailItems.includes(app.title)
+  ? "Details"
+  : "Order Now";
+
+card.innerHTML = `
+  <img src="${app.icon}" alt="${app.title}">
+  <div class="app-info">
+    <h3 class="app-title">${app.title}</h3>
+    <p class="app-description">${app.description}</p>
+    <a class="download-btn" href="${app.download}">${buttonText}</a>
+  </div>
+`;
         }
 
         if (app.category === "Hot-selling products") {
