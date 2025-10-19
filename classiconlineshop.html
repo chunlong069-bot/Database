@@ -354,14 +354,6 @@ renderApps();
     }
   });
 
-  /* 禁止图片点击跳转 */
-  document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('click', e => {
-      e.preventDefault();
-      showAlert('Image interaction is disabled');
-    });
-  });
-
   /* 防止页面被嵌入到iframe中 */
   if (window.self !== window.top) {
     window.top.location = window.self.location;
