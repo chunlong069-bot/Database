@@ -275,11 +275,11 @@ const buttonText = detailItems.includes(app.title)
   ? "Details"
   : customItems.includes(app.title)
   ? "Customize Now"
-  : "Order Now",
   : orderatmrdiyItems.includes(app.title)
   ? "Order at MR.DIY Now"
-  : orderatshopee.includes(app.title)
-  ? "Order at Lazada Now";
+  : orderatshopeeItems.includes(app.title)
+  ? "Order at Shopee Now"
+  : "Order Now";
     
 card.innerHTML = `
   <img src="${app.icon}" alt="${app.title}">
