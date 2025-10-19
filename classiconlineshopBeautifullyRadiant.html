@@ -216,17 +216,18 @@
     }
 
     .slides {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.8s ease;
-    }
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+}
 
-    .slides img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
+.slides img {
+  flex-shrink: 0;        /* 不要让图片被挤压 */
+  width: 100%;           /* 每张占满一页 */
+  height: 250px;         /* 高度你可自定 */
+  object-fit: cover;     /* 图片自适应裁切 */
+}
 
     /* 防复制与右键保护样式 */
     .protection-alert {
