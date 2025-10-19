@@ -254,7 +254,13 @@ function renderApps() {
     const card = document.createElement("div");
     card.className = "app-card";
   // 如果想改“Almari Buku Pelbagai Fungsi”那一项为 Details
-const buttonText = app.title === "Almari Buku Pelbagai Fungsi" || "Kotak Tisu Manik 'Berseri Indah'" ? "Details" : "Order Now";
+const buttonText =
+  app.title === "Kotak Tisu Manik 'Berseri Indah'"||
+  app.title === "ENERGIZER Max Powerseal Technology Alkaline Battery"||
+  app.title === "Sunstar LED Bulb G45 3W E27/B22 LED Bulb 6500K Daylight/3000K Warm White"
+    ? "Details"
+    : "Order Now";
+
 card.innerHTML = `
   <img src="${app.icon}" alt="${app.title}">
   <div class="app-info">
