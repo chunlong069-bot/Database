@@ -408,7 +408,7 @@ card.innerHTML = `
   </script>
 
   <!-- 防止右键、复制、查看源码 -->
- <script>
+<script>
 (function() {
   'use strict';
 
@@ -445,26 +445,42 @@ card.innerHTML = `
       (e.ctrlKey && ['u', 's', 'U', 'S'].includes(e.key))
     ) {
       e.preventDefault();
-      showAlert('⚠ This action has been blocked for security reasons');
+      showAlert('This action has been blocked for security reasons');
     }
   });
 
   /* 禁止右键菜单 */
   document.addEventListener('contextmenu', e => {
     e.preventDefault();
-    showAlert('⚠ Right-click & Menu is disabled on this page');
+    showAlert('Right-click & Menu is disabled on this page');
   });
 
   /* 禁止文字选取 */
   document.addEventListener('selectstart', e => {
     e.preventDefault();
-    showAlert('⚠ Text extraction is not allowed');
+    showAlert('Text extraction is not allowed');
   });
 
   /* 禁止复制 */
   document.addEventListener('copy', e => {
     e.preventDefault();
-    showAlert('⚠ Copying is not allowed');
+    showAlert('Copying is not allowed');
+  });
+
+  /* 禁止图片拖动或另存 */
+  document.addEventListener('dragstart', e => {
+    if (e.target.tagName === 'IMG' || e.target.closest('img')) {
+      e.preventDefault();
+      showAlert('Image dragging is disabled');
+    }
+  });
+
+  /* 禁止图片点击跳转 */
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('click', e => {
+      e.preventDefault();
+      showAlert('Image interaction is disabled');
+    });
   });
 
   /* 防止页面被嵌入到iframe中 */
