@@ -295,7 +295,7 @@ renderApps();
   'use strict';
   const alertBox = document.createElement('div');
   alertBox.className = 'protection-alert';
-  alertBox.textContent = '🚫 安全操作已被阻止';
+  alertBox.textContent = '⚠ This action has been blocked for security reasons';
   document.body.appendChild(alertBox);
   const overlay = document.createElement('div');
   overlay.className = 'protection-overlay';
@@ -309,12 +309,12 @@ renderApps();
   document.addEventListener('keydown', e => {
     if ( e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','i','J','j'].includes(e.key)) ||
          (e.ctrlKey && ['u','s','U','S'].includes(e.key)) ) {
-      e.preventDefault(); showAlert('🚫 开发者工具被阻止');
+      e.preventDefault(); showAlert('🚫');
     }
   });
-  document.addEventListener('contextmenu', e => { e.preventDefault(); showAlert('🚫 禁止右键'); });
-  document.addEventListener('selectstart', e => { e.preventDefault(); showAlert('🚫 禁止选取'); });
-  document.addEventListener('copy', e => { e.preventDefault(); showAlert('🚫 禁止复制'); });
+  document.addEventListener('contextmenu', e => { e.preventDefault(); showAlert('⚠ Right-click & Menu is disabled!'); });
+  document.addEventListener('selectstart', e => { e.preventDefault(); showAlert('⚠ Extraction is not allowed!'); });
+  document.addEventListener('copy', e => { e.preventDefault(); showAlert('⚠ Copying is not allowed!'); });
   if (window.self !== window.top) { window.top.location = window.self.location; }
 })();
 </script>
