@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classic Online Shop (Beautifully Radiant)</title>
+  <title>Classic Online Shop (Client)</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,296 +12,103 @@
     }
 
     body {
-      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-      color: #f5f5f5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      background: linear-gradient(90deg, #0f4c75, #1b262c);
-      color: #bbe1fa;
-      padding: 25px;
-      text-align: center;
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-      border-bottom: 4px solid #3282b8;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .video-container {
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%;
-      position: relative;
-      background: #000;
-      border-bottom: 3px solid #3282b8;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .container {
-      flex: 1;
-      max-width: 1200px;
-      margin: 25px auto;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(circle at top, #1a1a2e, #16213e);
+      color: #fff;
+      line-height: 1.6;
       padding: 20px;
     }
 
-    .category-title {
-      font-size: 26px;
-      color: #bbe1fa;
-      border-left: 5px solid #3282b8;
-      padding-left: 15px;
-      margin: 30px 0 20px;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-      background: rgba(27, 38, 44, 0.5);
-      padding: 12px 15px;
-      border-radius: 0 8px 8px 0;
+    h2 {
+      background: #0f3460;
+      padding: 10px 20px;
+      border-left: 6px solid #3282b8;
+      border-radius: 10px;
+      margin: 30px 0 15px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .app-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 25px;
-      justify-content: center;
+    .app-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
 
     .app-card {
-      width: calc(33.33% - 25px);
-      background: rgba(27, 38, 44, 0.8);
-      border: 2px solid #3282b8;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      background: #0f3460;
+      border-radius: 15px;
       overflow: hidden;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .app-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 25px rgba(50, 130, 184, 0.4);
-      border-color: #bbe1fa;
-    }
-
-    .app-card img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .app-card:hover img {
-      transform: scale(1.05);
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(50, 130, 184, 0.6);
     }
 
     .app-info {
-      padding: 20px;
+      padding: 15px;
     }
 
     .app-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #bbe1fa;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
     }
 
     .app-description {
-      font-size: 15px;
-      color: #e0e0e0;
-      line-height: 1.5;
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 12px;
     }
 
     .download-btn {
       display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
       background: linear-gradient(90deg, #3282b8, #0f4c75);
-      color: white;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s;
     }
 
     .download-btn:hover {
       background: linear-gradient(90deg, #0f4c75, #3282b8);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-      transform: translateY(-2px);
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #1b262c;
-      color: #bbe1fa;
-      font-size: 15px;
-      border-top: 4px solid #3282b8;
-      margin-top: 40px;
-    }
-
-    .contact-box {
-      background: rgba(27, 38, 44, 0.8);
-      color: white;
-      padding: 25px;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 320px;
-      margin-top: 40px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-    }
-
-    .contact-box h3 {
-      color: #bbe1fa;
-      margin-bottom: 15px;
-      font-size: 22px;
-    }
-
-    .contact-box p {
-      margin: 12px 0;
-    }
-
-    .contact-box a {
-      color: #bbe1fa;
-      text-decoration: none;
-      transition: color 0.3s;
-      display: block;
-      padding: 5px 0;
-    }
-
-    .contact-box a:hover {
-      color: #3282b8;
-    }
-
-    @media (max-width: 1024px) {
-      .app-card {
-        width: calc(50% - 25px);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .app-card {
-        width: 100%;
-      }
-
-      .category-title {
-        font-size: 22px;
-      }
-
-      header {
-        font-size: 28px;
-        padding: 20px;
-      }
-    }
-
-    /* 自动滑动图片样式 */
+    /* 自动滑动图片样式（改良版） */
     .slider {
       width: 100%;
-      height: 250px;
       overflow: hidden;
       border-bottom: 2px solid #3282b8;
+      background: #0f4c75;
     }
 
     .slides {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.8s ease;
-}
-
-.slides img {
-  flex-shrink: 0;        /* 不要让图片被挤压 */
-  width: 100%;           /* 每张占满一页 */
-  height: 250px;         /* 高度你可自定 */
-  object-fit: cover;     /* 图片自适应裁切 */
-}
-
-    /* 防复制与右键保护样式 */
-    .protection-alert {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 71, 87, 0.95);
-      color: white;
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      z-index: 2147483647;
-      font-weight: bold;
-      font-size: 16px;
-      text-align: center;
-      border: 2px solid #fff;
-      backdrop-filter: blur(10px);
-      display: none;
+      display: flex;
+      transition: transform 0.8s ease;
     }
 
-    .protection-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .slides img {
+      flex-shrink: 0;
       width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 2147483646;
-      display: none;
-    }
-
-    body {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      cursor: default;
+      height: auto;
+      object-fit: contain;  /* 显示完整图片 */
+      background: #0f4c75;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <header>Classic Online Shop</header>
+  <h2>🔥 Hot-selling products 🔥</h2>
+  <div class="app-container" id="appContainer"></div>
 
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/jGH_l-K7oTA?autoplay=1&mute=1&loop=1&playlist=jGH_l-K7oTA" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
-
-  <div class="container">
-    <div class="category">
-      <div class="category-title">🔥 Hot-selling products 🔥</div>
-      <div class="app-list" id="webDevList"></div>
-    </div>
-
-    <div class="category">
-      <div class="category-title">⚡ Customizations & Accessories ⚡</div>
-      <div class="app-list" id="gamesList"></div>
-    </div>
-
-    <div class="category">
-      <div class="category-title">🛒 Products from other merchants 🛒</div>
-      <div class="app-list" id="merchantsList"></div>
-    </div>
-
-    <div class="contact-box">
-      <h3>📞 Contact Us</h3>
-      <p><a href="tel:+60125107364">Call: +60 12-510 7364</a></p>
-      <p><a href="tel:+60172925813">Call: +60 17-292 5813</a></p>
-      <p><a href="https://wa.me/+60172925813" target="_blank">WhatsApp: +60 17-292 5813</a></p>
-      <p><a href="https://wa.me/+60125107364" target="_blank">WhatsApp: +60 12-510 7364</a></p>
-    </div>
-  </div>
-
-  <footer>Copyright © 2025 Classic Online Shop. All rights reserved | Beautifully Radiant</footer>
+  <h2>⚡ Customizations & Accessories ⚡</h2>
+  <div class="app-container" id="accessoryContainer"></div>
 
   <script>
     const apps = [
@@ -314,36 +121,29 @@
       },
       {
         category: "Customizations & Accessories",
-        title: "ENERGIZER Max Alkaline Battery",
-        description: "Battery 9V (1pcs)",
-        icon: "https://mrdiy.com.my/cdn/shop/files/9520002.jpg?v=1742885266&width=1380",
-        download: "https://mrdiy.com.my/products/energizer-max-alkaline-battery-9v-9520002-001001?_pos=2&_sid=bb01b65d2&_ss=r"
-      },
-      {
-        category: "Other merchants",
-        title: "Almari Buku Pelbagai Fungsi",
-        description: "Product by Chun Long & Jagadissan. RM126.50 each",
-        icon: "https://github.com/chunlong069-bot/Database/blob/main/Almari%20Buku%20Pelbagai%20Fungsi.jpeg?raw=true",
-        download: "https://chunlong069-bot.github.io/Database/classiconlineshop"
+        title: "Custom Wire Extension",
+        description: "Choose your desired wire length and connector type.",
+        icon: "https://picsum.photos/400/250?4",
+        download: "#"
       }
     ];
 
     function renderApps() {
-      const webDevList = document.getElementById("webDevList");
-      const gamesList = document.getElementById("gamesList");
-      const merchantsList = document.getElementById("merchantsList");
+      const appContainer = document.getElementById('appContainer');
+      const accessoryContainer = document.getElementById('accessoryContainer');
 
       apps.forEach(app => {
-        const card = document.createElement("div");
-        card.className = "app-card";
+        const card = document.createElement('div');
+        card.className = 'app-card';
 
+        // 自动滑动图片版本
         if (app.title === "Kotak Tisu Manik 'Berseri Indah'") {
           card.innerHTML = `
             <div class="slider">
               <div class="slides" id="slides">
                 <img src="https://github.com/chunlong069-bot/Database/blob/main/Poster%20Kotak%20Tisu%20Manik%20'Berseri%20Indah'.jpeg?raw=true">
-                <img src="https://raw.githubusercontent.com/chunlong069-bot/Database/refs/heads/main/Poster2%20Kotak%20Tisu%20Manik%20'Berseri%20Indah'.jpeg.jpg">
-                <img src="https://raw.githubusercontent.com/chunlong069-bot/Database/refs/heads/main/Kotak%20Tisu%20Manik%20'Berseri%20Indah'.jpeg">
+                <img src="https://picsum.photos/500/300?2">
+                <img src="https://picsum.photos/500/300?3">
               </div>
             </div>
             <div class="app-info">
@@ -354,7 +154,7 @@
           `;
         } else {
           card.innerHTML = `
-            <img src="${app.icon}" alt="${app.title}">
+            <img src="${app.icon}" alt="${app.title}" style="width:100%;height:auto;display:block;">
             <div class="app-info">
               <h3 class="app-title">${app.title}</h3>
               <p class="app-description">${app.description}</p>
@@ -364,18 +164,16 @@
         }
 
         if (app.category === "Hot-selling products") {
-          webDevList.appendChild(card);
-        } else if (app.category === "Customizations & Accessories") {
-          gamesList.appendChild(card);
-        } else if (app.category === "Other merchants") {
-          merchantsList.appendChild(card);
+          appContainer.appendChild(card);
+        } else {
+          accessoryContainer.appendChild(card);
         }
       });
     }
 
     renderApps();
 
-    // 自动滑动图片逻辑
+    // 自动滑动图片逻辑（完整显示版）
     setInterval(() => {
       const slides = document.getElementById('slides');
       if (!slides) return;
@@ -384,41 +182,6 @@
       if (window.slideIndex >= total) window.slideIndex = 0;
       slides.style.transform = `translateX(-${window.slideIndex * 100}%)`;
     }, 3000);
-  </script>
-
-  <!-- 防止右键、复制、查看源码 -->
-  <script>
-    (function() {
-      'use strict';
-      const alertBox = document.createElement('div');
-      alertBox.className = 'protection-alert';
-      alertBox.textContent = '🚫 安全操作已被阻止';
-      document.body.appendChild(alertBox);
-
-      const overlay = document.createElement('div');
-      overlay.className = 'protection-overlay';
-      document.body.appendChild(overlay);
-
-      function showAlert(msg) {
-        alertBox.textContent = msg;
-        alertBox.style.display = 'block';
-        overlay.style.display = 'block';
-        setTimeout(() => {
-          alertBox.style.display = 'none';
-          overlay.style.display = 'none';
-        }, 2500);
-      }
-
-      document.addEventListener('contextmenu', e => { e.preventDefault(); showAlert('🚫 禁止右键'); });
-      document.addEventListener('selectstart', e => { e.preventDefault(); showAlert('🚫 禁止选取'); });
-      document.addEventListener('copy', e => { e.preventDefault(); showAlert('🚫 禁止复制'); });
-      document.addEventListener('keydown', e => {
-        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'i', 'J', 'j'].includes(e.key)) || (e.ctrlKey && ['u', 's', 'U', 'S'].includes(e.key))) {
-          e.preventDefault();
-          showAlert('🚫 开发者工具被阻止');
-        }
-      });
-    })();
   </script>
 </body>
 </html>
