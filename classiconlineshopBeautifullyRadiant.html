@@ -364,15 +364,23 @@
         } else {
            // 如果想改“Almari Buku Pelbagai Fungsi”那一项为 Details
 const detailItems = [
-  "ENERGIZER Max Alkaline Battery",
-  "Premier Tissue 2 Ply",
   "Almari Buku Pelbagai Fungsi"
+];
+const orderatmrdiyItems = [
+  "ENERGIZER Max Alkaline Battery"
+];
+const orderatlazadaItems = [
+  "Premier Tissue 2 Ply"
 ];
 
 // ✅ 保留原来的语句结构，但实现多个按钮文字
 const buttonText = detailItems.includes(app.title)
   ? "Details"
-  : "Order Now";
+  : orderatmrdiyItems.includes(app.title)
+  ? "Order at MR.DIY Now"
+  : orderatlazadaItems.includes(app.title)
+  ? "Order at Lazada Now"
+  : "Order Now;
 
 card.innerHTML = `
   <img src="${app.icon}" alt="${app.title}">
