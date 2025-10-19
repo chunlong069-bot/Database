@@ -270,9 +270,6 @@ const buttonText = detailItems.includes(app.title)
   : customItems.includes(app.title)
   ? "Customize Now"
   : "Order Now";
-
-
-
 card.innerHTML = `
   <img src="${app.icon}" alt="${app.title}">
   <div class="app-info">
@@ -347,6 +344,22 @@ renderApps();
   document.addEventListener('copy', e => {
     e.preventDefault();
     showAlert('Copying is not allowed');
+  });
+
+  /* 禁止图片拖动或另存 */
+  document.addEventListener('dragstart', e => {
+    if (e.target.tagName === 'IMG' || e.target.closest('img')) {
+      e.preventDefault();
+      showAlert('Image dragging is disabled');
+    }
+  });
+
+  /* 禁止图片点击跳转 */
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('click', e => {
+      e.preventDefault();
+      showAlert('Image interaction is disabled');
+    });
   });
 
   /* 防止页面被嵌入到iframe中 */
