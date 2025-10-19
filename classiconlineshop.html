@@ -327,26 +327,26 @@ renderApps();
       (e.ctrlKey && ['u', 's', 'U', 'S'].includes(e.key))
     ) {
       e.preventDefault();
-      showAlert('⚠ This action has been blocked for security reasons');
+      showAlert('This action has been blocked for security reasons');
     }
   });
 
   /* 禁止右键菜单 */
   document.addEventListener('contextmenu', e => {
     e.preventDefault();
-    showAlert('⚠ Right-click is disabled on this page');
+    showAlert('Right-click & Menu is disabled on this page');
   });
 
   /* 禁止文字选取 */
   document.addEventListener('selectstart', e => {
     e.preventDefault();
-    showAlert('⚠ Text extraction is not allowed');
+    showAlert('Text extraction is not allowed');
   });
 
   /* 禁止复制 */
   document.addEventListener('copy', e => {
     e.preventDefault();
-    showAlert('⚠ Copying is not allowed');
+    showAlert('Copying is not allowed');
   });
 
   /* 防止页面被嵌入到iframe中 */
