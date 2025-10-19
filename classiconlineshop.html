@@ -254,12 +254,24 @@ function renderApps() {
     const card = document.createElement("div");
     card.className = "app-card";
   // 如果想改“Almari Buku Pelbagai Fungsi”那一项为 Details
-const buttonText =
-  app.title === "Kotak Tisu Manik 'Berseri Indah'"||
-  app.title === "ENERGIZER Max Powerseal Technology Alkaline Battery"||
-  app.title === "Sunstar LED Bulb G45 3W E27/B22 LED Bulb 6500K Daylight/3000K Warm White"
-    ? "Details"
-    : "Order Now";
+const detailItems = [
+  "Kotak Tisu Manik 'Berseri Indah'",
+  "ENERGIZER Max Powerseal Technology Alkaline Battery",
+  "Sunstar LED Bulb G45 3W E27/B22 LED Bulb 6500K Daylight/3000K Warm White"
+];
+
+const customItems = [
+  "Custom Wire Length, SIRIM certified wires"
+];
+
+// ✅ 保留原来的语句结构，但实现多个按钮文字
+const buttonText = detailItems.includes(app.title)
+  ? "Details"
+  : customItems.includes(app.title)
+  ? "Customize Now"
+  : "Order Now";
+
+
 
 card.innerHTML = `
   <img src="${app.icon}" alt="${app.title}">
