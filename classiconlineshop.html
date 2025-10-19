@@ -253,14 +253,17 @@ function renderApps() {
   apps.forEach(app => {
     const card = document.createElement("div");
     card.className = "app-card";
-    card.innerHTML = `
-      <img src="${app.icon}" alt="${app.title}">
-      <div class="app-info">
-        <h3 class="app-title">${app.title}</h3>
-        <p class="app-description">${app.description}</p>
-        <a class="download-btn" href="${app.download}">Order Now</a>
-      </div>
-    `;
+  // 如果想改“Almari Buku Pelbagai Fungsi”那一项为 Details
+const buttonText = app.title === "Almari Buku Pelbagai Fungsi" ? "Details" : "Order Now";
+    const buttonText = app.title === "Kotak Tisu Manik 'Berseri Indah'" ? "Details" : "Order Now";
+card.innerHTML = `
+  <img src="${app.icon}" alt="${app.title}">
+  <div class="app-info">
+    <h3 class="app-title">${app.title}</h3>
+    <p class="app-description">${app.description}</p>
+    <a class="download-btn" href="${app.download}">${buttonText}</a>
+  </div>
+`;
     if (app.category === "Hot-selling products") webDevList.appendChild(card);
     else if (app.category === "Customizations & Accessories") gamesList.appendChild(card);
     else if (app.category === "Other merchants") merchantsList.appendChild(card);
