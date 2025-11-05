@@ -285,7 +285,7 @@
     </div>
 
     <div class="category">
-      <div class="category-title">⚡ Customize Your Product – Add-Ons & Accessories ⚡</div>
+      <div class="category-title">🔧 Customize Your Product – Add-Ons & Accessories 🔨</div>
       <div class="app-list" id="gamesList"></div>
     </div>
 
@@ -296,10 +296,10 @@
 
     <div class="contact-box">
       <h3>📞 Contact Us</h3>
-      <p><a href="tel:+60125107364">Handphone📱 1: +60 12-510 7364</a></p>
-      <p><a href="tel:+60172925813">Handphone📱 2: +60 17-292 5813</a></p>
-      <p><a href="https://wa.me/+60172925813" target="_blank">WhatsApp 1: +60 17-292 5813</a></p>
-      <p><a href="https://wa.me/+60125107364" target="_blank">WhatsApp 2: +60 12-510 7364</a></p>
+      <p><a href="tel:+60125107364">Hp📱 1: +60 12-510 7364</a></p>
+      <p><a href="tel:+60172925813">Hp📱 2: +60 17-292 5813</a></p>
+      <p><a href="https://wa.me/+60172925813" target="_blank">WhatsApp 1: +60 12-510 7364</a></p>
+      <p><a href="https://wa.me/+60125107364" target="_blank">WhatsApp 2: +60 17-292 5813</a></p>
     </div>
 </div>
   <h>Notice📌</h>
@@ -312,42 +312,42 @@
     const apps = [
       {
         category: "Hot-selling products",
-        title: "Kotak Tisu Manik 'Berseri Indah'",
+        title: "📦Kotak Tisu Manik 'Berseri Indah'",
         description: "Hiasi Ruangmu Dengan Sentuhan Manik Eksklusif! RM60.00 each",
         icon: "Poster Kotak Tisu Manik 'Berseri Indah'.jpeg",
         download: "https://wa.me/60125107364?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
       },
       {
         category: "Customizations & Accessories",
-        title: "ENERGIZER Max Alkaline Battery",
+        title: "🔋ENERGIZER Max Alkaline Battery",
         description: "Battery 9V (1pcs)",
         icon: "https://mrdiy.com.my/cdn/shop/files/9520002.jpg?v=1742885266&width=1380",
         download: "https://mrdiy.com.my/products/energizer-max-alkaline-battery-9v-9520002-001001?_pos=2&_sid=bb01b65d2&_ss=r"
       },
       {
         category: "Customizations & Accessories",
-        title: "PREMIER Facial Tissue",
+        title: "🤧PREMIER Facial Tissue",
         description: "1 Ply (4 Boxes X 90's)",
         icon: "https://mrdiy.com.my/cdn/shop/files/9750451-1.jpg?v=1742914243&width=1380",
         download: "https://mrdiy.com.my/products/premier-facial-tissue-1-ply-4-boxes-x-90-sheets-9750451-001001?_pos=2&_sid=a1890de41&_ss=r"
       },
       {
         category: "Customizations & Accessories",
-        title: "PREMIER Facial Tissue",
+        title: "🤧PREMIER Facial Tissue",
         description: "2 Ply (4 Boxes X 80's)",
         icon: "https://mrdiy.com.my/cdn/shop/files/9750293.jpg?v=1742914252&width=1380",
         download: "https://mrdiy.com.my/products/premier-facial-tissue-4-box-x-80-s-2ply-9750293-001001?_pos=1&_sid=90ff50d29&_ss=r"
       },
        {
         category: "Customizations & Accessories",
-        title: "Premier Tissue",
+        title: "🤧Premier Tissue",
         description: "2 Ply (200 Pulls x 4 Boxes)",
         icon: "https://img.lazcdn.com/g/p/239416a455728368652577c5ee711ef2.jpg_720x720q80.jpg_.webp",
         download: "https://www.lazada.com.my/products/premier-tissue-2-ply-200-pulls-x-4-boxes-i154037262.html"
       },
       {
         category: "Other merchants",
-        title: "Almari Buku Pelbagai Fungsi",
+        title: "🗄️Almari Buku Pelbagai Fungsi",
         description: "Product by Chun Long & Jagadissan. RM126.50 each",
         icon: "Almari Buku Pelbagai Fungsi.jpeg",
         download: "https://chunlong069-bot.github.io/Database/classiconlineshop"
@@ -381,24 +381,24 @@
         } else {
            // 如果想改“Almari Buku Pelbagai Fungsi”那一项为 Details
 const detailItems = [
-  "Almari Buku Pelbagai Fungsi"
+  "🗄️Almari Buku Pelbagai Fungsi"
 ];
 const orderatmrdiyItems = [
-  "ENERGIZER Max Alkaline Battery",
-  "PREMIER Facial Tissue"
+  "🔋ENERGIZER Max Alkaline Battery",
+  "🤧PREMIER Facial Tissue"
 ];
 const orderatlazadaItems = [
-  "Premier Tissue"
+  "🤧Premier Tissue"
 ];
 
 // ✅ 保留原来的语句结构，但实现多个按钮文字
 const buttonText = detailItems.includes(app.title)
-  ? "Details"
+  ? "🔍Details"
   : orderatmrdiyItems.includes(app.title)
-  ? "Order at MR.DIY Now"
+  ? "Order at MR.DIY Now🛒"
   : orderatlazadaItems.includes(app.title)
-  ? "Order at Lazada Now"
-  : "Order Now";
+  ? "Order at Lazada Now🛒"
+  : "Order Now🛍️";
 
 card.innerHTML = `
   <img src="${app.icon}" alt="${app.title}">
