@@ -212,35 +212,35 @@ function playMusic() {
 const apps = [
   {
     category: "Hot-selling products",
-    title: "Almari Buku Pelbagai Fungsi",
+    title: "🗄️Almari Buku Pelbagai Fungsi",
     description: "Termasuk dawai 2 meter & Mentol Lampu E27. Tahan Lasak, Jimat Tenaga & Selamat. RM126.50 each",
     icon: "Almari Buku Pelbagai Fungsi.jpeg",
     download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
   },
   {
     category: "Customizations & Accessories",
-    title: "Custom Wire Length, SIRIM certified wires",
+    title: "〰️Custom Wire Length, SIRIM certified wires",
     description: "For Custom Length. RM2.00 per Metre",
     icon: "https://down-my.img.susercontent.com/file/my-11134207-7qul8-lj7zgj608dvq3b.webp",
     download: "https://wa.me/60194387206?text=Hello!%0APlease%20fill%20in%20your%20details:%0ANAME%2FNAMA:%0AADDRESS%2FALAMAT%20TETAP:%0APHONE%20NUMBER:"
   },
   {
   category: "Customizations & Accessories",
-    title: "ENERGIZER Max Powerseal Technology Alkaline Battery",
+    title: "🔋ENERGIZER Max Powerseal Technology Alkaline Battery",
     description: "Battery AA (2pcs)",
     icon: "https://mrdiy.com.my/cdn/shop/files/9520005_1_1.jpg?v=1742885288&width=1380",
     download: "https://mrdiy.com.my/products/energizer-max-powerseal-technology-alkaline-battery-aa-2pcs-9520005-001001?_pos=15&_sid=5fcec07c6&_ss=r"
   },
    {
   category: "Customizations & Accessories",
-    title: "Sunstar LED Bulb G45 3W E27/B22 LED Bulb 6500K Daylight/3000K Warm White",
+    title: "💡Sunstar LED Bulb G45 3W E27/B22 LED Bulb 6500K Daylight/3000K Warm White",
     description: "Almari Buku Pelbagai Fungsi hanya terima mentol E27",
     icon: "https://down-my.img.susercontent.com/file/my-11134207-7rasi-m3q6a004iany78@resize_w900_nl.webp",
     download: "https://shopee.com.my/Sunstar-LED-Ping-Pong-Bulb-G45-3W-E27-B22-LED-Bulb-6500K-Daylight-3000K-Warm-White-i.66132841.24089411869"
   },
   {
     category: "Other merchants",
-    title: "Kotak Tisu Manik 'Berseri Indah'",
+    title: "📦Kotak Tisu Manik 'Berseri Indah'",
     description: "Product by Hamsavahini & Durgaashini. RM60.00 each",
     icon: "Kotak Tisu Manik 'Berseri Indah'.jpeg",
     download: "https://chunlong069-bot.github.io/Database/classiconlineshopBeautifullyRadiant"
@@ -257,31 +257,31 @@ function renderApps() {
     card.className = "app-card";
   // 如果想改“Almari Buku Pelbagai Fungsi”那一项为 Details
 const detailItems = [
-  "Kotak Tisu Manik 'Berseri Indah'"
+  "📦Kotak Tisu Manik 'Berseri Indah'"
 ];
 
 const customItems = [
-  "Custom Wire Length, SIRIM certified wires"
+  "〰️Custom Wire Length, SIRIM certified wires"
 ];
 
 const orderatmrdiyItems = [
-  "ENERGIZER Max Powerseal Technology Alkaline Battery"
+  "🔋ENERGIZER Max Powerseal Technology Alkaline Battery"
 ];
 
 const orderatshopeeItems = [
-  "Sunstar LED Bulb G45 3W E27/B22 LED Bulb 6500K Daylight/3000K Warm White"
+  "💡Sunstar LED Bulb G45 3W E27/B22 LED Bulb 6500K Daylight/3000K Warm White"
 ];
 
 // ✅ 保留原来的语句结构，但实现多个按钮文字
 const buttonText = detailItems.includes(app.title)
-  ? "Details"
+  ? "Detailsℹ️"
   : customItems.includes(app.title)
-  ? "Customize Now"
+  ? "Customize Now🛠️"
   : orderatmrdiyItems.includes(app.title)
-  ? "Order at MR.DIY Now"
+  ? "Order at MR.DIY Now🛍️"
   : orderatshopeeItems.includes(app.title)
-  ? "Order at Shopee Now"
-  : "Order Now";
+  ? "Order at Shopee Now🛍️"
+  : "Order Now🛒";
     
 card.innerHTML = `
   <img src="${app.icon}" alt="${app.title}">
