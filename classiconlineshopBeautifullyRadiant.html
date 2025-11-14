@@ -391,6 +391,9 @@ const orderatmrdiyItems = [
 const orderatlazadaItems = [
   "🤧Premier Tissue"
 ];
+cont ordernowItem = [
+  📦Kotak Tisu Manik 'Berseri Indah'
+];
 
 // ✅ 保留原来的语句结构，但实现多个按钮文字
 const buttonText = detailItems.includes(app.title)
@@ -399,7 +402,8 @@ const buttonText = detailItems.includes(app.title)
   ? "Order via MR.DIY🛒"
   : orderatlazadaItems.includes(app.title)
   ? "Order via Lazada🛒"
-  : "Order Now via Whatsapp🛍️";
+  : ordernowItem.includes(app.title)
+  ? "Order Now via Whatsapp🛍️";
 
 card.innerHTML = `
   <img src="${app.icon}" alt="${app.title}">
