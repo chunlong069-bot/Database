@@ -391,6 +391,9 @@ const orderatmrdiyItems = [
 const orderatlazadaItems = [
   "🤧Premier Tissue"
 ];
+const customItems = [];  //目前没有使用，可以空着
+const orderatshopeeItems = []; //没有 Shopee 产品，可空
+
 
 // ✅ 保留原来的语句结构，但实现多个按钮文字
 const buttonText = detailItems.includes(app.title)
@@ -399,6 +402,8 @@ const buttonText = detailItems.includes(app.title)
   ? "Customize Now🛠️"
   : orderatmrdiyItems.includes(app.title)
   ? "Order via MR.DIY🛒"
+  : orderatlazadaItems.includes(app.title)
+  ? "Order via Lazada🛒"
   : orderatshopeeItems.includes(app.title)
   ? "Order via Shopee🛒"
   : "Order Now via Whatsapp🛍️";
