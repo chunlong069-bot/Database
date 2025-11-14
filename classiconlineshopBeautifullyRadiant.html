@@ -391,19 +391,17 @@ const orderatmrdiyItems = [
 const orderatlazadaItems = [
   "🤧Premier Tissue"
 ];
-cont ordernowItem = [
-  📦Kotak Tisu Manik 'Berseri Indah'
-];
 
 // ✅ 保留原来的语句结构，但实现多个按钮文字
 const buttonText = detailItems.includes(app.title)
   ? "🔍Details"
+  : customItems.includes(app.title)
+  ? "Customize Now🛠️"
   : orderatmrdiyItems.includes(app.title)
-  ? "Order via MR.DIY🛒"
-  : orderatlazadaItems.includes(app.title)
-  ? "Order via Lazada🛒"
-  : ordernowItem.includes(app.title)
-  ? "Order Now via Whatsapp🛍️";
+  ? "Order at MR.DIY Now🛒"
+  : orderatshopeeItems.includes(app.title)
+  ? "Order at Shopee Now🛒"
+  : "Order Now via Whatsapp🛍️";
 
 card.innerHTML = `
   <img src="${app.icon}" alt="${app.title}">
