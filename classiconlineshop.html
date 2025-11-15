@@ -11,14 +11,16 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: "Caveat", cursive;
+  font-family: "Caveat", system-ui, sans-serif; /* Caveat 手写字体，系统字体 fallback */
   background: radial-gradient(circle at top, #1a1a1a, #000);
   color: #f5f5f5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
 header {
+  font-family: "Caveat", system-ui, cursive; /* 标题也只用手写，其他字符自动 fallback */
   background: linear-gradient(90deg, #8b0000, #111);
   color: #ffd700;
   padding: 20px;
@@ -27,7 +29,7 @@ header {
   font-weight: bold;
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px black;
-  border-bottom: 3px solid #b22222;
+  border-bottom: 3px solid #b22222
 }
 .video-container {
   width: 100%;
