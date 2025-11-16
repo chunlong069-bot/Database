@@ -1,0 +1,19 @@
+/* 防复制与右键保护样式 */
+.protection-alert {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background: rgba(255, 71, 87, 0.95); color: white;
+  padding: 20px 30px; border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 2147483647; font-weight: bold; font-size: 16px;
+  text-align: center; border: 2px solid #fff; backdrop-filter: blur(10px);
+  display: none;
+}
+.protection-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7); z-index: 2147483646; display: none;
+}
+.protection-blocked { filter: blur(10px) grayscale(100%); pointer-events: none; }
+body {
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
+  user-select: none; cursor: default;
+}
