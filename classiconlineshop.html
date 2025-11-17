@@ -69,53 +69,72 @@ header {
   flex-wrap: wrap;
   gap: 20px;
 }
+
+/* ⭐ 商品卡片美化版 — 保留你原本主题，但更专业 */
 .app-card {
   width: calc(33.33% - 20px);
   background: #111;
-  border: 2px solid #660000;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255,0,0,0.3);
+  border: 1.5px solid #880000;
+  border-radius: 12px;
   overflow: hidden;
-  transition: 0.3s;
+  padding-bottom: 10px;
+  transition: all 0.28s ease;
+  box-shadow: 0 0 8px rgba(255,0,0,0.2);
+  transform: translateY(0);
 }
 .app-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255,215,0,0.5);
+  transform: translateY(-7px);
+  box-shadow: 0px 8px 25px rgba(255, 50, 50, 0.45);
+  border-color: #ff3333;
 }
+
+/* 图片更干净圆角 */
 .app-card img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  border-bottom: 2px solid #660000;
 }
+
+/* 内容区域更整齐 */
 .app-info {
-  padding: 10px;
+  padding: 12px;
 }
+
+/* 标题更亮但不夸张 */
 .app-title {
   font-size: 18px;
   font-weight: bold;
   color: #ff4444;
-  text-shadow: 1px 1px 2px black;
+  text-shadow: 0 0 3px rgba(0,0,0,0.6);
+  margin-bottom: 6px;
 }
+
+/* 描述更柔和 */
 .app-description {
   font-size: 14px;
-  color: #ccc;
-  margin-top: 5px;
+  line-height: 1.45em;
+  color: #dddddd;
+  margin-bottom: 10px;
 }
+
+/* 按钮保留你的主题稍微提升亮度 */
 .download-btn {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 4px;
   padding: 8px 12px;
   background: linear-gradient(90deg, #ff0000, #ff8c00);
   color: white;
-  text-decoration: none;
-  border-radius: 5px;
   font-weight: bold;
-  transition: 0.2s;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.25s ease;
 }
 .download-btn:hover {
   background: linear-gradient(90deg, #ffcc00, #ff0000);
-  color: black;
+  color: #111;
+  box-shadow: 0 0 10px rgba(255,200,0,0.6);
 }
+
 footer {
   text-align: center;
   padding: 10px;
@@ -195,7 +214,7 @@ function playMusic() {
   </div>
 </div>
   <p>Notice📌</p>
-  <p>Product Available in Malaysia🇲🇾 only</>
+  <p>Product Available in Malaysia🇲🇾 only</p>
   <p>This is a School Project.</p>
   <p>Developers👨‍💻</p>
   <p>Chun Long & Luminary Digital Group</p>
@@ -291,5 +310,7 @@ card.innerHTML = `
   });
 }
 renderApps();
+</script>
 </body>
 </html>
+
