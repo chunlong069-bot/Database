@@ -62,10 +62,3 @@
       e.preventDefault();
       showAlert('Image dragging is disabled');
     }
-  });
-
-  /* 防止页面被嵌入到iframe中 */
-  if (window.self !== window.top) {
-    window.top.location = window.self.location;
-  }
-})();
